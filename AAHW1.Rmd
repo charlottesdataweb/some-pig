@@ -25,7 +25,8 @@ The following are steps to perform an Exploratory Factor Analysis (EFA) on a dat
 
 A. Step one is to set my seed. Setting the seed can offer some 'control' over the randomness of certain R functions. This would be especially useful if I was to perform a CFA right after my EFA. By using the same number, I can ensure I am working with the exact same split of training data (EFA) and test data (CFA), so there is no overlap 
 
-```{r, set.seed69)}
+```{r}
+set.seed(69)
 knitr::opts_chunk$set(cache.extra = knitr::rand_seed)
 ```
 
@@ -129,18 +130,20 @@ d. Sampling
 
 a. First, I will search for outliers by measuring the Mahalanobis distance. Mahalanobis distance is how far away the data point is from the overall distribution of the data. Are there any cases of extreme or unusual responses that may affect the results of an EFA down the line?
 ```{r}
-set.seed(69)
-
-
-cutoff = qchisq(1-.001, ncol(hwdata))
-mahal = mahalanobis(hwdata,
-                    colMeans(hwdata),
-                    cov(hwdata))
-cutoff ##cutoff score
-ncol(hwdata) ##df
-summary(mahal < cutoff)
+# set.seed(69)
+# 
+# 
+# cutoff = qchisq(1-.001, ncol(hwdata))
+# mahal = mahalanobis(hwdata,
+#                     colMeans(hwdata),
+#                     cov(hwdata))
+# cutoff 
+# ncol(hwdata)
+# summary(mahal < cutoff)
 ```
-I got this error above that said the system is computationally singular. Then I remembered that the dataset had the survey responses, as well as the factor analysis scores. So I will build a new dataset with only the survey responses and rerun the Mahalanobis code with that to see if that will work.
+I got an error that said the system is computationally singular. Then I remembered that the dataset had the survey responses, as well as the factor analysis scores. So I will build a new dataset with only the survey responses and rerun the Mahalanobis code with that to see if that will work.
+
+Also, I commented the chunk above because, when I tried to knit the markdown file, it wouldn't allow it to knit with this type of error. Lots of lessons to be learned!
 
 To create a new dataframe, I'm going to 'borrow' the code we learned from the dplyr package to deselect the last eight columns so I have a new dataset that is only survey responses. Note that, in the code below, I have a minus sign (-) before I concatenate c(). This creates a new data frame (called hwdataitems) that excludes the 8 analysis columns.
 
@@ -307,34 +310,34 @@ hist(data$Question_23, breaks = 5)
 
 Now I will try the code that will show all the histograms in one plot to see if it appears in the markdown file.
 ```{r}
-par(mfrow =c(5,5),mar = c(3,4,3,4))
-
-hist(data$Question_01, breaks = 5)
-hist(data$Question_02, breaks = 5)
-hist(data$Question_03, breaks = 5)
-hist(data$Question_04, breaks = 5)
-hist(data$Question_05, breaks = 5)
-hist(data$Question_06, breaks = 5)
-hist(data$Question_07, breaks = 5)
-hist(data$Question_08, breaks = 5)
-hist(data$Question_09, breaks = 5)
-hist(data$Question_10, breaks = 5)
-hist(data$Question_11, breaks = 5)
-hist(data$Question_12, breaks = 5)
-hist(data$Question_13, breaks = 5)
-hist(data$Question_14, breaks = 5)
-hist(data$Question_15, breaks = 5)
-hist(data$Question_16, breaks = 5)
-hist(data$Question_17, breaks = 5)
-hist(data$Question_18, breaks = 5)
-hist(data$Question_19, breaks = 5)
-hist(data$Question_20, breaks = 5)
-hist(data$Question_21, breaks = 5)
-hist(data$Question_22, breaks = 5)
-hist(data$Question_23, breaks = 5)
+# par(mfrow =c(5,5),mar = c(3,4,3,4))
+# 
+# hist(data$Question_01, breaks = 5)
+# hist(data$Question_02, breaks = 5)
+# hist(data$Question_03, breaks = 5)
+# hist(data$Question_04, breaks = 5)
+# hist(data$Question_05, breaks = 5)
+# hist(data$Question_06, breaks = 5)
+# hist(data$Question_07, breaks = 5)
+# hist(data$Question_08, breaks = 5)
+# hist(data$Question_09, breaks = 5)
+# hist(data$Question_10, breaks = 5)
+# hist(data$Question_11, breaks = 5)
+# hist(data$Question_12, breaks = 5)
+# hist(data$Question_13, breaks = 5)
+# hist(data$Question_14, breaks = 5)
+# hist(data$Question_15, breaks = 5)
+# hist(data$Question_16, breaks = 5)
+# hist(data$Question_17, breaks = 5)
+# hist(data$Question_18, breaks = 5)
+# hist(data$Question_19, breaks = 5)
+# hist(data$Question_20, breaks = 5)
+# hist(data$Question_21, breaks = 5)
+# hist(data$Question_22, breaks = 5)
+# hist(data$Question_23, breaks = 5)
 ```
 
-I had to adjust the margins with the mar = # syntax to get it to work. However, it only worked if the margins were set pretty small. Because of this, the question# is cut off from each, and it's a little difficult to interpret the histograms. Because of this, I also put this code in a blank script and got the plot to show up in my plots pane, and I saved that plot. I will include that too since it's bigger/easier to understand. I could have potentially messed with R Commander to get it to show up even bigger and cleaner, but the one from the plots will do for now, and I will embed it below when I knit the markdown file.
+I had to adjust the margins with the mar = # syntax to get it to work. However, it only worked if the margins were set pretty small. Because of this, the question# is cut off from each, and it's a little difficult to interpret the histograms. Because of this, I also put this code in a blank script and got the plot to show up in my plots pane, and I saved that plot. I will include that too since it's bigger/easier to understand. Additionally, when I tried to knit the markdown file, the error or 'figure margins too large' would not let me knit. So, similar to the mahalanobis code getting an error, I have commented the code out jsut to keep track of what doesn't work but also allow the file to knit.
 
 Insights from the histograms are:
 
@@ -686,11 +689,11 @@ Now I can start the process of evaluating each subscale and gaining information 
 
 At first, I did play around with going right to the psych::alpha functions, but I got an error message. So I will actually make the keys for each subscale one at a time. I will leave the code above since doing it in aggregate may come in handy later on if I can get the code to work, but for now I will override that with the code below.
 ```{r}
-fitmat_keys_list <- list(fitc=c(5, 6, 9, 12, 15)) 
-fitmat_keys <- make.keys(FITC, fitmat_keys_list, item.labels = colnames(FITC))
+#fitmat_keys_list <- list(fitc=c(5, 6, 9, 12, 15)) 
+#fitmat_keys <- make.keys(FITC, fitmat_keys_list, item.labels = colnames(FITC))
 ```
 
-Ok, I got an error there that says my subscript is out of bounds. After some sleuthing, I found that this means I'm calling for column numbers that don't exist (are 'out of the bounds' of my data). It turns out that these numbers do not need to match the column numbers from the main data set, instead they just need to be 1-X (with X being the number of items in that subscale). Lesson learned. Let's try that again.
+Ok, I got an error there that says my subscript is out of bounds. After some sleuthing, I found that this means I'm calling for column numbers that don't exist (are 'out of the bounds' of my data). It turns out that these numbers do not need to match the column numbers from the main data set, instead they just need to be 1-X (with X being the number of items in that subscale). Lesson learned. Let's try that again. (Once more, I have commented out the error code so it will knit, but leaving it there to understand what went wrong and how to fix it).
 
 ```{r}
 fitmat_keys_list <- list(fitc=c(1,2,3,4,5)) 
