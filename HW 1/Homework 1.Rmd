@@ -1,0 +1,24 @@
+---
+title: "AA - HW 1"
+author: "CJK"
+date: "2023-05-21"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+
+```{r}
+
+```
+
+
+
+```{r}
+
+```
+
