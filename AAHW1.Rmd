@@ -862,7 +862,8 @@ The first step is straightforward, which is simply to make sure that I have inpu
 The next step is to reexamine the reverse-scoring information to see if any of the five items should be reverse scored. I reexamined the histograms, looked at the five items, and do not see adequate evidence that any should be reverse scored.
 
 
-The following potential steps would be more involved and require extensive work and re-analyzing of the data.
+The following potential steps would be more involved, with some requiring extensive work and re-analyzing of the data.
+I could redistribute the survey, as is, to another sample to see if the results are consistent with my above finding. Namely, does this SFTS scale consistently have inadequately low reliability, or is this current data set more anomalous? Is this data set reflective of the 'exception' or the 'rule'? If it's the exception based on other datasets, then I will take the above findings as an anomaly and move forward. If it aligns with other findings, then I can move to some of the steps below.
 I could add one or two well-constructed items to the subscale, and this often leads to increase in reliability. Unfortunately, this would also require that I go through a round of item writing, redistribute the questions, and repeat the full process of EFA and reliability analyses above. 
 I could rewrite any items that may be performing poorly to see if the rewrites would increase reliability. Once more, this would require redistributing the survey and re-running analyses. However, these modifications may make the questions more clear, or perhaps more applicable (could changing 'SPSS' to 'R' be more accurate based on what software people are using to run statistical analyses?)
 
@@ -874,8 +875,9 @@ In my summary below, I give final recommendations regarding methods to increase 
 
 
 In summation regarding the reliability analyses for the subscales, the FITC scale meets the adequate standard for reliability (0.79), and the FITM and FITS scales both meet the higher 'good' standard for reliability (0.82 and 0.80, respectively). The reliability results for the FITC, FITM, and FITS did not flag any items for potential removal.
-The 'problem child' is the SFTS scale; it did not reach the minimum acceptable standard for reliability (0.59), and the results did not flag any items for potential removal. From the potential options listed above regarding methods for increasing the reliability of SFTS, the two recommended paths forward would be:
+The 'problem child' is the SFTS scale; it did not reach the minimum acceptable standard for reliability (0.59), and the results did not flag any items for potential removal. From the potential options listed above regarding methods for increasing the reliability of SFTS, the three recommended paths forward would be:
 - Rerun the EFA using a three factor model, potentially removing additional items to ensure each factor captures a clear and delineated construct with appropriately high loadings and no cross loadings.
+-Readminister the measure as it currently stands to see if the results are consistent of inconsistent with the above findings.
 - Reword current items in the SFTS scale and add 1-2 new items to the scale as well. Readminister the measure and rerun the full EFA and reliability analyses above. This would require more work and effort, but the process of scale development and refinement is cyclical, and steps often need to be repeated to ensure that all scales and subscales are reliable and comprised of accurate, thorough, and well-performing items.
 
 Overall, the four-factor model appears to be a good fit for the 23 question scale. The factor analysis picked up on four distinct factors that grouped items accordingly. Three of the four scales emerged with adequate reliability, and one scale emerged with a problematic low Cronbach's alpha that will require further adjustments and evaluations.
