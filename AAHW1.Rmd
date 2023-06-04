@@ -337,7 +337,7 @@ Now I will try the code that will show all the histograms in one plot to see if 
 # hist(data$Question_23, breaks = 5)
 ```
 
-I had to adjust the margins with the mar = # syntax to get it to work. However, it only worked if the margins were set pretty small. Because of this, the question# is cut off from each, and it's a little difficult to interpret the histograms. Because of this, I also put this code in a blank script and got the plot to show up in my plots pane, and I saved that plot. I will include that too since it's bigger/easier to understand. Additionally, when I tried to knit the markdown file, the error or 'figure margins too large' would not let me knit. So, similar to the mahalanobis code getting an error, I have commented the code out jsut to keep track of what doesn't work but also allow the file to knit.
+I had to adjust the margins with the mar = # syntax to get it to work. However, it only worked if the margins were set pretty small. Because of this, the question# is cut off from each, and it's a little difficult to interpret the histograms. Because of this, I also put this code in a blank script and got the plot to show up in my plots pane, and I saved that plot. I will include that too since it's bigger/easier to understand. Additionally, when I tried to knit the markdown file, the error or 'figure margins too large' would not let me knit. So, similar to the mahalanobis code getting an error, I have commented the code out just to keep track of what doesn't work but also allow the file to knit.
 
 Insights from the histograms are:
 
@@ -373,7 +373,7 @@ colnames(data)
 
 Now, I can split my data.
 
-3. I will split the data as 70/30. It is usually recommended to have a larger sample for the EFA (training), so I have chosen this uneven split that favors a bigger sample for the 'test' set. Also, since we practiced the 50/50 split in class, I wanted to try a different one that would more likely be applicable to best practices in the 'real world' - the split is also sometimes done as an 80/20 split. I opted for the slightly more conservative approach just to ensure enough observations remained for the testing set.
+3. I will split the data as 70/30. It is usually recommended to have a larger sample for the EFA (training), so I have chosen this uneven split that favors a bigger sample for the 'training' (EFA) set. Also, since we practiced the 50/50 split previously, I wanted to try a different one that would more likely be applicable to best practices in the 'real world' - the split is also sometimes done as an 80/20 split. I opted for the slightly more conservative approach just to ensure enough observations remained for the test set.
 ```{r}
 #70 percent of the sample is now labeled with the 'training' value
 training <- sample(data$ID, length(data$ID)*0.7)
