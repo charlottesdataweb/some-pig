@@ -337,7 +337,7 @@ Now I will try the code that will show all the histograms in one plot to see if 
 # hist(data$Question_23, breaks = 5)
 ```
 
-I had to adjust the margins with the mar = # syntax to get it to work. However, it only worked if the margins were set pretty small. Because of this, the question# is cut off from each, and it's a little difficult to interpret the histograms. Because of this, I also put this code in a blank script and got the plot to show up in my plots pane, and I saved that plot. I will include that too since it's bigger/easier to understand. Additionally, when I tried to knit the markdown file, the error or 'figure margins too large' would not let me knit. So, similar to the mahalanobis code getting an error, I have commented the code out jsut to keep track of what doesn't work but also allow the file to knit.
+I had to adjust the margins with the mar = # syntax to get it to work. However, it only worked if the margins were set pretty small. Because of this, the question# is cut off from each, and it's a little difficult to interpret the histograms. Because of this, I also put this code in a blank script and got the plot to show up in my plots pane, and I saved that plot. I will include that too since it's bigger/easier to understand. Additionally, when I tried to knit the markdown file, the error or 'figure margins too large' would not let me knit. So, similar to the mahalanobis code getting an error, I have commented the code out just to keep track of what doesn't work but also allow the file to knit.
 
 Insights from the histograms are:
 
@@ -373,7 +373,7 @@ colnames(data)
 
 Now, I can split my data.
 
-3. I will split the data as 70/30. It is usually recommended to have a larger sample for the EFA (training), so I have chosen this uneven split that favors a bigger sample for the 'test' set. Also, since we practiced the 50/50 split in class, I wanted to try a different one that would more likely be applicable to best practices in the 'real world' - the split is also sometimes done as an 80/20 split. I opted for the slightly more conservative approach just to ensure enough observations remained for the testing set.
+3. I will split the data as 70/30. It is usually recommended to have a larger sample for the EFA (training), so I have chosen this uneven split that favors a bigger sample for the 'training' (EFA) set. Also, since we practiced the 50/50 split previously, I wanted to try a different one that would more likely be applicable to best practices in the 'real world' - the split is also sometimes done as an 80/20 split. I opted for the slightly more conservative approach just to ensure enough observations remained for the test set.
 ```{r}
 #70 percent of the sample is now labeled with the 'training' value
 training <- sample(data$ID, length(data$ID)*0.7)
@@ -423,7 +423,7 @@ print(fa_ml_4_trn$loadings, cutoff = .3)
 
 There is a lot of cross-loading and A LOT of variables on the first factor, but right now, the structure is not easy to interpret. So I will rotate the factors first, then follow-up with my thoughts and interpretations.
 
-5. I opted for an oblique rotation because I saw some correlation between items and similar patterns in the histograms, so I am operating under the idea that my factors will likely be more correlated (if there was evidence they would be less correlated, I could opt for an orthogonal rotation). Per the recommendation of James Gaskin's EFA video, I chose a promax rotation to maximize interpretability.
+5. I opted for an oblique rotation because I saw some correlations between items and similar patterns in the histograms, so I am operating under the idea that my factors will likely be more correlated (if there was evidence they would be less correlated, I could opt for an orthogonal rotation). Per the recommendation of James Gaskin's EFA video, I chose a promax rotation to maximize interpretability.
 ```{r}
 fa_ml_4_trn <- fa(data[c(2:24)], nfactors = 4, fm="ml", rotate="promax")
 print(fa_ml_4_trn)
@@ -508,7 +508,7 @@ fa_pa_4faclds
 ```{r}
 openxlsx::write.xlsx(fa_pa_4faclds,"~/Documents/DirectoryR/UGA IOMP 2023 AA/fa_pa_4faclds.xlsx")
 ```
-f
+
 ```{r}
 fa_pa_5faclds <- as.data.frame(round(unclass(fa_pa_5_trn$loadings), 3))
 
@@ -594,7 +594,7 @@ The factor names are a tad long, but I do feel that they accurately and pretty f
 
 I also noticed how well the 4-factor model grouped the items together. The identification of each underlying factor was not difficult. This is a good sign that my simple structure is logical, interpretable, and accurate.
 
-Below is some information about the fit statistics for the final model. As a reminder, the final model is the 4-factor model, ML method, with the three items removed.
+Below is some information about the fit statistics for the final model. As a reminder, the final model is the 4-factor model, ML method, with the three items (Q3, Q14, Q15) removed.
 
 7. The Tucker Lewis Index ranges from 0 to 1, and it provides information about the goodness of fit for a factor model. For the final model, the TLI = 0.927. The preferred standard for a good TLI is 0.95 or greater. However, a value of 0.90 or greater may be acceptable as well. It is noteworthy that the obtained value does not reach the preferred standard, but it is above 0.90 so it is considered acceptable. Although the TLI was higher in the 5 factor model, the results were problematic in other ways (they were not as easily interpretable, and one factor would not meet the criteria for the minimum number of items, only having two items loading high enough on that factor instead of the standard of 3 or more).
 
@@ -604,7 +604,7 @@ The conclusion from the TLI and RMSEA is that the 4-factor model is an acceptabl
 
 
 9. Here is the information about my scales:
-I've chosen to name the overall scale 'Fear and Incompetence Toward Mathematics and Technology' (FITMAT) Scale
+I've chosen to name the overall scale the 'Fear and Incompetence Toward Mathematics and Technology' (FITMAT) Scale.
 Based on my factor information above, the scale is comprised of 4 subscales: 
 The 'Fear and Incompetence Toward Computers' (FITC) Scale
 The 'Fear and Incompetence Toward Mathematics' (FITM) Scale
@@ -685,7 +685,7 @@ SFTS <- dataitems %>%
 ```
 
 
-Now I can start the process of evaluating each subscale and gaining information about it's reliability. I'll start with the FITC scale.
+Now I can start the process of evaluating each subscale and gaining information about its reliability. I'll start with the FITC scale.
 
 At first, I did play around with going right to the psych::alpha functions, but I got an error message. So I will actually make the keys for each subscale one at a time. I will leave the code above since doing it in aggregate may come in handy later on if I can get the code to work, but for now I will override that with the code below.
 ```{r}
